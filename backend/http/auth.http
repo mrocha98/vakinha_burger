@@ -1,0 +1,23 @@
+### login
+POST http://{{$dotenv %HOST}}/auth
+Content-Type: application/json
+
+{
+  "email": "matheusrocha@email.com",
+  "password": "S3nh@F0rt&"
+}
+
+### me
+GET http://{{$dotenv %HOST}}/me
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+### register
+POST http://{{$dotenv %HOST}}/users
+Content-Type: application/json
+
+{
+  "name": "Matheus Rocha",
+  "email": "matheusrocha@email.com",
+  "password": "S3nh@F0rt&"
+}

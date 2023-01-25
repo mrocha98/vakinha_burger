@@ -1,0 +1,41 @@
+###
+POST http://{{$dotenv %HOST}}/orders
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+{
+  "id": 1,
+  "products": [
+    { "id": 1, "amount": 2, "total_price": 38.0 },
+    { "id": 2, "amount": 1, "total_price": 19.0 }
+  ],
+  "user_id": "#userAuthRef",
+  "address": "Av Paulista, 51 São Paulo",
+  "CPF": 1234156464,
+  "payment_method_id": 1
+}
+
+###
+GET http://{{$dotenv %HOST}}/orders
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+{
+  "name": "Porção de 500g Calabresa acebolada",
+  "description": "",
+  "price": 19.0,
+  "image_path": "https://www.anamariabrogui.com.br/assets/uploads/receitas/fotos/usuario-1682-52acab79d88efd805e6a341697e6aecb.jpg"
+}
+
+###
+# @prompt orderId the order ID
+PUT http://{{$dotenv %HOST}}/orders/{{orderId}}
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+{
+  "name": "X-Churrasco",
+  "description": "Lanche acompanha pão francês, contra filé, alface, vinagrete, queijo e maionese",
+  "price": 23.0,
+  "image_path": "http://www.saboresajinomoto.com.br/uploads/images/recipes/sanduiche-de-churrasco.jpg"
+}

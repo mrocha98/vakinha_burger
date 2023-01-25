@@ -1,0 +1,11 @@
+###
+GET http://{{$dotenv %HOST}}/payment-types
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+###
+POST http://{{$dotenv %HOST}}/payment-types
+Content-Type: application/json
+Authorization: Bearer {{$dotenv %ACCESS_TOKEN}}
+
+{ "name": "Dinheiro", "acronym": "DD", "enabled": false }
