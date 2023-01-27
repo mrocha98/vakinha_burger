@@ -3,4 +3,5 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     - prefer_relative_imports
+    - sort_unnamed_constructors_first
     - sort_constructors_first
