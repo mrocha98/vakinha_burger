@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 
 import '../../core/exceptions/repository_exception.dart';
+import '../../dto/order_product_dto.dart';
 import '../../repositories/products/products_repository.dart';
 import 'home_state.dart';
 
@@ -28,5 +29,24 @@ class HomeController extends Cubit<HomeState> {
         ),
       );
     }
+  }
+
+  void addOrUpdateBag(OrderProductDto orderProduct) {
+    final shoppingBag = [...state.shoppingBag];
+    final orderIndex = shoppingBag.indexWhere(
+      (item) => item.product == orderProduct.product,
+    );
+
+    if (orderIndex > -1) {
+      if (orderProduct.amount == 0) {
+        shoppingBag.removeAt(orderIndex);
+      } else {
+        shoppingBag[orderIndex] = orderProduct;
+      }
+    } else {
+      shoppingBag.add(orderProduct);
+    }
+
+    emit(state.copyWith(shoppingBag: shoppingBag));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,7 +48,12 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
                 itemCount: state.products.length,
                 itemBuilder: (_, index) {
                   final product = state.products[index];
-                  return DeliveryProductTile(product: product);
+                  final orderProduct = state.shoppingBag
+                      .firstWhereOrNull((order) => order.product == product);
+                  return DeliveryProductTile(
+                    product: product,
+                    orderProduct: orderProduct,
+                  );
                 },
               ),
             ),
