@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'core/provider/application_binding.dart';
 import 'core/ui/theme/theme_config.dart';
 import 'pages/auth/login/login_page.dart';
+import 'pages/auth/login/login_router.dart';
 import 'pages/auth/register/register_page.dart';
+import 'pages/auth/register/register_router.dart';
 import 'pages/home/home_page.dart';
 import 'pages/home/home_router.dart';
+import 'pages/order/order_page.dart';
 import 'pages/product_detail/product_detail_page.dart';
-import 'pages/product_detail/product_detail_route.dart';
+import 'pages/product_detail/product_detail_router.dart';
 import 'pages/splash/splash_page.dart';
 
 class App extends StatelessWidget {
@@ -24,9 +27,10 @@ class App extends StatelessWidget {
         routes: {
           SplashPage.routeName: (_) => const SplashPage(),
           HomePage.routeName: (_) => HomeRouter.page,
-          ProductDetailPage.routeName: (_) => ProductDetailRoute.page,
-          LoginPage.routeName: (_) => const LoginPage(),
-          RegisterPage.routeName: (_) => const RegisterPage(),
+          ProductDetailPage.routeName: (_) => ProductDetailRouter.page,
+          LoginPage.routeName: (_) => LoginRouter.page,
+          RegisterPage.routeName: (_) => RegisterRouter.page,
+          OrderPage.routeName: (_) => const OrderPage(),
         },
       ),
     );

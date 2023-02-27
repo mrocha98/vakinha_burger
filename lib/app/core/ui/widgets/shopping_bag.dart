@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../dto/order_product_dto.dart';
 import '../../../pages/auth/login/login_page.dart';
+import '../../../pages/order/order_page.dart';
 import '../../extensions/formatter_extension.dart';
 import '../helpers/size_extensions.dart';
 import '../styles/text_styles.dart';
@@ -23,8 +24,10 @@ class ShoppingBag extends StatelessWidget {
     final cache = GetStorage();
     if (!cache.hasData('accessToken')) {
       final loginResult = await navigator.pushNamed(LoginPage.routeName);
+      if (loginResult != true) return;
     }
-    // envia para o order
+
+    await navigator.pushNamed(OrderPage.routeName, arguments: bag);
   }
 
   @override

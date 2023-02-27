@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'product_detail_controller.dart';
 import 'product_detail_page.dart';
 
-class ProductDetailRoute {
-  ProductDetailRoute._();
+class ProductDetailRouter {
+  ProductDetailRouter._();
 
   static Widget get page => MultiProvider(
         providers: [
