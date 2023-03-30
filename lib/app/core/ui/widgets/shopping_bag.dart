@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 
 import '../../../dto/order_product_dto.dart';
 import '../../../pages/auth/login/login_page.dart';
+import '../../../pages/home/home_controller.dart';
 import '../../../pages/order/order_page.dart';
 import '../../extensions/formatter_extension.dart';
 import '../helpers/size_extensions.dart';
@@ -21,13 +23,18 @@ class ShoppingBag extends StatelessWidget {
 
   Future<void> _goOrder(BuildContext context) async {
     final navigator = Navigator.of(context);
+    final controller = context.read<HomeController>();
     final cache = GetStorage();
     if (!cache.hasData('accessToken')) {
       final loginResult = await navigator.pushNamed(LoginPage.routeName);
       if (loginResult != true) return;
     }
 
-    await navigator.pushNamed(OrderPage.routeName, arguments: bag);
+    final updatedBag = await navigator.pushNamed(
+      OrderPage.routeName,
+      arguments: bag,
+    );
+    controller.updateBag(updatedBag as List<OrderProductDto>);
   }
 
   @override

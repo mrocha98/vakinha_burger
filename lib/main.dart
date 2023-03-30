@@ -7,5 +7,5 @@ import 'app/core/config/env/env.dart';
 Future<void> main() async {
   await Env.I.load();
   await GetStorage.init();
-  runApp(const App());
+  runApp(App());
 }
