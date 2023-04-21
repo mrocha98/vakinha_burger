@@ -6,12 +6,12 @@ import 'interceptors/auth_interceptor.dart';
 
 class CustomDio extends DioForNative {
   CustomDio()
-      : _authInterceptor = AuthInterceptor(),
-        super(BaseOptions(
+      : super(BaseOptions(
           baseUrl: Env.I['BACKEND_BASE_URL']!,
           connectTimeout: 5000,
           receiveTimeout: 60000,
         )) {
+    _authInterceptor = AuthInterceptor(this);
     interceptors.add(LogInterceptor(
       requestBody: true,
       responseBody: true,
@@ -19,7 +19,7 @@ class CustomDio extends DioForNative {
     ));
   }
 
-  final AuthInterceptor _authInterceptor;
+  late final AuthInterceptor _authInterceptor;
 
   CustomDio auth() {
     interceptors.add(_authInterceptor);

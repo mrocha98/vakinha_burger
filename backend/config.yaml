@@ -9,8 +9,8 @@ auth:
    unauthorizedStatusCode: 401
    urlSkip:
       - /users:
-         method: post
+           method: post
       - /products:
-         method: get
+           method: get
       - /products/{*}:
-          method: get
+           method: get
