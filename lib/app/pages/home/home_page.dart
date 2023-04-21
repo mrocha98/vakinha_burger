@@ -58,10 +58,12 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
                 },
               ),
             ),
-            Visibility(
-              visible: state.shoppingBag.isNotEmpty,
-              child: ShoppingBag(
-                bag: state.shoppingBag,
+            SafeArea(
+              child: Visibility(
+                visible: state.shoppingBag.isNotEmpty,
+                child: ShoppingBag(
+                  bag: state.shoppingBag,
+                ),
               ),
             ),
           ],

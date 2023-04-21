@@ -107,77 +107,80 @@ class _ProductDetailPageState
             ),
           ),
           const Divider(),
-          Row(
-            children: [
-              Container(
-                width: context.percentWidth(.5),
-                height: 68,
-                padding: const EdgeInsets.all(12),
-                child: BlocBuilder<ProductDetailController, int>(
-                  builder: (context, amount) =>
-                      DeliveryIncrementDecrementButton(
-                    amount: amount,
-                    onDecrementTap: () {
-                      controller.decrement();
-                    },
-                    onIncrementTap: () {
-                      controller.increment();
-                    },
+          SafeArea(
+            child: Row(
+              children: [
+                Container(
+                  width: context.percentWidth(.5),
+                  height: 68,
+                  padding: const EdgeInsets.all(12),
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) =>
+                        DeliveryIncrementDecrementButton(
+                      amount: amount,
+                      onDecrementTap: () {
+                        controller.decrement();
+                      },
+                      onIncrementTap: () {
+                        controller.increment();
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                width: context.percentWidth(.5),
-                height: 60,
-                child: BlocBuilder<ProductDetailController, int>(
-                  builder: (context, amount) => ElevatedButton(
-                    onPressed: () {
-                      if (amount == 0) {
-                        _showConfirmDelete(amount);
-                      } else {
-                        final dto = OrderProductDto(
-                          product: widget.product,
-                          amount: amount,
-                        );
-                        Navigator.of(context).pop(dto);
-                      }
-                    },
-                    style: amount == 0
-                        ? ElevatedButton.styleFrom(backgroundColor: Colors.red)
-                        : null,
-                    child: Visibility(
-                      visible: amount > 0,
-                      replacement: Text(
-                        'Excluir produto',
-                        style: context.textStyles.textExtraBold,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Adicionar',
-                            style: context.textStyles.textExtraBold
-                                .copyWith(fontSize: 13),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: AutoSizeText(
-                              (widget.product.price * amount).currencyPTBR,
-                              maxFontSize: 13,
-                              minFontSize: 5,
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: context.textStyles.textExtraBold,
+                Container(
+                  padding: const EdgeInsets.all(8.0),
+                  width: context.percentWidth(.5),
+                  height: 60,
+                  child: BlocBuilder<ProductDetailController, int>(
+                    builder: (context, amount) => ElevatedButton(
+                      onPressed: () {
+                        if (amount == 0) {
+                          _showConfirmDelete(amount);
+                        } else {
+                          final dto = OrderProductDto(
+                            product: widget.product,
+                            amount: amount,
+                          );
+                          Navigator.of(context).pop(dto);
+                        }
+                      },
+                      style: amount == 0
+                          ? ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red)
+                          : null,
+                      child: Visibility(
+                        visible: amount > 0,
+                        replacement: Text(
+                          'Excluir produto',
+                          style: context.textStyles.textExtraBold,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Adicionar',
+                              style: context.textStyles.textExtraBold
+                                  .copyWith(fontSize: 13),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: AutoSizeText(
+                                (widget.product.price * amount).currencyPTBR,
+                                maxFontSize: 13,
+                                minFontSize: 5,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: context.textStyles.textExtraBold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

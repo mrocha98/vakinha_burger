@@ -209,34 +209,36 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Divider(color: Colors.grey),
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: DeliveryButton(
-                          label: 'FINALIZAR',
-                          onPressed: () {
-                            bool valid =
-                                formKey.currentState?.validate() ?? false;
-                            final paymentTypeSelected = paymentTypeId != null;
-                            paymentTypeValid.value = paymentTypeSelected;
-                            valid &= paymentTypeSelected;
+                  child: SafeArea(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Divider(color: Colors.grey),
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: DeliveryButton(
+                            label: 'FINALIZAR',
+                            onPressed: () {
+                              bool valid =
+                                  formKey.currentState?.validate() ?? false;
+                              final paymentTypeSelected = paymentTypeId != null;
+                              paymentTypeValid.value = paymentTypeSelected;
+                              valid &= paymentTypeSelected;
 
-                            if (valid) {
-                              controller.saveOrder(
-                                address: addressEC.text,
-                                document: documentEC.text,
-                                paymentMethodId: paymentTypeId!,
-                              );
-                            }
-                          },
-                          width: double.infinity,
-                          height: 48,
+                              if (valid) {
+                                controller.saveOrder(
+                                  address: addressEC.text,
+                                  document: documentEC.text,
+                                  paymentMethodId: paymentTypeId!,
+                                );
+                              }
+                            },
+                            width: double.infinity,
+                            height: 48,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
